@@ -1,0 +1,307 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "(%)" : {
+      "shouldTranslate" : false
+    },
+    "(%@)" : {
+      "shouldTranslate" : false
+    },
+    "(pips)" : {
+      "shouldTranslate" : false
+    },
+    "(USD)" : {
+      "shouldTranslate" : false
+    },
+    "/" : {
+
+    },
+    "1 Lot size" : {
+
+    },
+    "1.15" : {
+
+    },
+    "199.000" : {
+      "shouldTranslate" : false
+    },
+    "acountBarrance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acount barrance"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "口座残高"
+          }
+        }
+      }
+    },
+    "Add Item" : {
+      "shouldTranslate" : false
+    },
+    "appropriateLot" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appropriate Lot"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "適正ロット"
+          }
+        }
+      }
+    },
+    "calculation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calculation"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "計算"
+          }
+        }
+      }
+    },
+    "currencyPair" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currency pair"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通貨ペア"
+          }
+        }
+      }
+    },
+    "currencyPairListTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currency Pair List"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通貨ペアリスト"
+          }
+        }
+      }
+    },
+    "favoriteCurrencyPairListTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite Currency Pair List"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お気に入り通貨ペアリスト"
+          }
+        }
+      }
+    },
+    "free" : {
+
+    },
+    "Hello, World!" : {
+      "shouldTranslate" : false
+    },
+    "Item at %@" : {
+      "shouldTranslate" : false
+    },
+    "JPY/JPY" : {
+      "shouldTranslate" : false
+    },
+    "loading Rate" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lording rate"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lording rate"
+          }
+        }
+      }
+    },
+    "lossAllowance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loss allowance"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "損失許容額"
+          }
+        }
+      }
+    },
+    "lossTolerancePercent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loss tolerance(%)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "損失許容度(%)"
+          }
+        }
+      }
+    },
+    "lot" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ロット"
+          }
+        }
+      }
+    },
+    "lotSizeCalculatorTitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lot Size Calculator"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ロットサイズ計算"
+          }
+        }
+      }
+    },
+    "MyList" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MyList"
+          }
+        }
+      }
+    },
+    "Pro+" : {
+
+    },
+    "profitLossPipsSetting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P/L pips setting"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "損益pips設定"
+          }
+        }
+      }
+    },
+    "rate" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rate"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "レート"
+          }
+        }
+      }
+    },
+    "riskRewardRatioTitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risk Reward Ratio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リスクリワード比率"
+          }
+        }
+      }
+    },
+    "Select an item" : {
+      "shouldTranslate" : false
+    },
+    "stopLoss" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop-Loss"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ストップロス"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
