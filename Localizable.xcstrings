@@ -19,6 +19,15 @@
     "/" : {
 
     },
+    "%@" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld %%" : {
+
+    },
     "1 Lot size" : {
 
     },
@@ -27,6 +36,25 @@
     },
     "199.000" : {
       "shouldTranslate" : false
+    },
+    "AC" : {
+
+    },
+    "AccountCurrency" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account Currency"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウントの通貨"
+          }
+        }
+      }
     },
     "acountBarrance" : {
       "extractionState" : "manual",
@@ -82,6 +110,9 @@
         }
       }
     },
+    "Category" : {
+
+    },
     "currencyPair" : {
       "localizations" : {
         "en" : {
@@ -115,6 +146,23 @@
         }
       }
     },
+    "CurrentProductVersion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current product version"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在の製品版"
+          }
+        }
+      }
+    },
     "favoriteCurrencyPairListTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -132,17 +180,48 @@
         }
       }
     },
+    "FixedProfitAndLossAllowance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixed profit and loss allowance(%)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "固定損益許容額(%)"
+          }
+        }
+      }
+    },
     "free" : {
 
-    },
-    "Hello, World!" : {
-      "shouldTranslate" : false
     },
     "Item at %@" : {
       "shouldTranslate" : false
     },
     "JPY/JPY" : {
       "shouldTranslate" : false
+    },
+    "LineGraph" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Line Graph"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "線グラフ"
+          }
+        }
+      }
     },
     "loading Rate" : {
       "localizations" : {
@@ -173,6 +252,23 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "損失許容額"
+          }
+        }
+      }
+    },
+    "LossRatio" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loss Ratio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "損失率"
           }
         }
       }
@@ -230,8 +326,42 @@
         }
       }
     },
+    "OneLotSize" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Lot size (Units per Lot)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "1Lotの通貨単位"
+          }
+        }
+      }
+    },
     "Pro+" : {
 
+    },
+    "ProbabilityTable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Probability"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "破産確率表"
+          }
+        }
+      }
     },
     "profitLossPipsSetting" : {
       "extractionState" : "manual",
@@ -266,6 +396,43 @@
         }
       }
     },
+    "Restore Purchase item and condition >" : {
+
+    },
+    "reward" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reward"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リワード"
+          }
+        }
+      }
+    },
+    "risk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risk"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リスク"
+          }
+        }
+      }
+    },
     "riskRewardRatioTitle" : {
       "localizations" : {
         "en" : {
@@ -285,6 +452,19 @@
     "Select an item" : {
       "shouldTranslate" : false
     },
+    "set ratio" : {
+
+    },
+    "Settings" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        }
+      }
+    },
     "stopLoss" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -301,6 +481,35 @@
           }
         }
       }
+    },
+    "Table" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Table"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "表"
+          }
+        }
+      }
+    },
+    "value" : {
+
+    },
+    "勝率" : {
+
+    },
+    "損益比率" : {
+
+    },
+    "破産確率" : {
+
     }
   },
   "version" : "1.0"

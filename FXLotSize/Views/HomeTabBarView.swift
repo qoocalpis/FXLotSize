@@ -15,17 +15,30 @@ struct HomeTabBarView: View {
     
     var body: some View {
         VStack{
-            if(selected == 0){
-                Text("lotSizeCalculatorTitle")
-                    .foregroundColor(.white)
-                    .font(.title3)
-                    .fontWeight(.semibold)
-            }
-            if(selected == 1){
-                Text("riskRewardRatioTitle")
-                    .foregroundColor(.white)
-                    .font(.title3)
-                    .fontWeight(.semibold)
+            HStack {
+//                Image(systemName: "person.circle.fill")
+//                    .font(.title3)
+//                    .padding(.horizontal,10)
+//                    .foregroundStyle(Color.blue)
+//                Spacer()
+                if(selected == 0){
+                    Text("lotSizeCalculatorTitle")
+                        .foregroundColor(.white)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                }
+                if(selected == 1){
+                    Text("riskRewardRatioTitle")
+                        .foregroundColor(.white)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                }
+//                Spacer()
+//                
+//                //dummy
+//                Image(systemName: "")
+//                    .font(.title2)
+//                    .padding(.horizontal,10)
             }
             HStack {
                 HomeTabBarButtonView(
@@ -83,8 +96,6 @@ struct HomeTabBarButtonView: View {
 }
 
 #Preview() {
-    HomeTabBarView(selected: .constant(0),
-                   isDisabled: .constant(false),
-                   height: 80)
+    HomeTabView()
 }
 

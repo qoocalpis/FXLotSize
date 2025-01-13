@@ -12,6 +12,8 @@ struct FirstLoadingRateView: View {
     
     @Environment(\.modelContext) private var modelContext
     @State var isUpdated = false
+    @StateObject private var storeKitManager = StoreKitManager()
+    private let proVersionProductID = "com.yuki.FXLotSize.Pro"
     
     var body: some View {
         ZStack {
@@ -33,7 +35,7 @@ struct FirstLoadingRateView: View {
         .ignoresSafeArea()
         .onAppear(){
             Task {
-                await SetUser()
+                await setUser()
             }
         }
         .fullScreenCover(isPresented: $isUpdated) {
@@ -41,7 +43,7 @@ struct FirstLoadingRateView: View {
         }
     }
     
-    private func SetUser() async {
+    private func setUser() async {
         let manager = DatabaseManager(modelContext: modelContext)
         do {
             isUpdated = try await manager.setFirstInsert()

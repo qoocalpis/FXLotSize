@@ -69,7 +69,7 @@ struct SelectedCurrencyPairView: View {
                         }){
                             Label("MyList", systemImage: "list.bullet.rectangle.fill")
                                 .padding(7)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.black)
                                 .bold()
                                 .background(.green)
                                 .cornerRadius(5)

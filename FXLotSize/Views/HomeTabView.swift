@@ -16,6 +16,7 @@ struct HomeTabView: View {
 //    @StateObject var storeKit = StoreKitManager()
     @StateObject private var keyboardObserver = KeyboardObserver()
     @State private var isShowCurrencyPairListView: Bool = false
+    @State private var isShowSettingView: Bool = false
 
     init(){
         print("HomeTabView")
@@ -25,11 +26,19 @@ struct HomeTabView: View {
         GeometryReader { GeometryProxy in
             NavigationStack {
                 VStack(spacing: 0) {
-                    
-                    HomeTabBarView(selected: $selected,
-                                   isDisabled: $isDisabled,
-                                   height: GeometryProxy.size.height)
-                    
+                    ZStack(alignment: .topLeading) {
+                        HomeTabBarView(selected: $selected,
+                                       isDisabled: $isDisabled,
+                                       height: GeometryProxy.size.height)
+                        Button {
+                            isShowSettingView = true
+                        } label: {
+                            Image(systemName: "person.circle.fill")
+                                .font(.title)
+                                .padding(.horizontal,10)
+                                .foregroundStyle(Color.green)
+                        }
+                    }
                     TabView(selection: $selected) {
                         LotCalculatorView(isShowCurrencyPairListView: $isShowCurrencyPairListView)
                             .tag(0)
@@ -57,6 +66,9 @@ struct HomeTabView: View {
                 }
                 .navigationDestination(isPresented: $isShowCurrencyPairListView, destination: {
                     FavotiteCurrencyPairListView()
+                })
+                .navigationDestination(isPresented: $isShowSettingView, destination: {
+                    SettingView()
                 })
             }
         }

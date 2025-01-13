@@ -26,7 +26,7 @@ struct LotCalculatorView: View {
     @State private var lossAllowableAmountText: String = ""
     @State private var lotSizeText: String = ""
     @State private var isShowResultLotSizeViewSheet = false
-    
+    @State private var firstOnAppearTrigger = false
     
     var body: some View {
         GeometryReader { geometryProxy in
@@ -80,9 +80,13 @@ struct LotCalculatorView: View {
                     // 背景をタップした時にキーボードを閉じる
                     hideKeyboard()
                 }
-            }.onAppear() {
+            }
+            .onAppear() {
                 if let user = users.first {
-                    lossAllowanceText = String(user.lossPercent)
+                    if (!firstOnAppearTrigger) {
+                        lossAllowanceText = String(user.lossPercent)
+                        firstOnAppearTrigger.toggle()
+                    }
                 }
             }
             .onChange(of: acountBarranceText) {
@@ -211,9 +215,6 @@ struct LotCalculatorView: View {
         isShowResultLotSizeViewSheet  = true
     }
 }
-
-
-
 
 
 #Preview {

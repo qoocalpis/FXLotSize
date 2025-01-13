@@ -15,6 +15,16 @@ class DatabaseManager {
         self.modelContext = modelContext
     }
     
+    func updateUserModel(currency: String, lossPercent: Int, oneLotSize: Int) async throws {
+        let fetchDescriptor = FetchDescriptor<DatabaseUserModel>()
+        if let models = try? modelContext.fetch(fetchDescriptor) {
+            models.first?.currency = currency
+            models.first?.lossPercent = lossPercent
+            models.first?.oneLotSize = oneLotSize
+        }
+        try? modelContext.save()
+    }
+    
     // 特定の通貨ペアの価格を更新
     func setFirstInsert() async throws -> Bool {
         // モデルの取得
