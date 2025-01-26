@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import SwiftData
 
 struct Probability: Identifiable {
     var id = UUID()
@@ -22,16 +23,19 @@ enum GraphType {
 struct ProbabilityTableView: View {
     
     let list: [Probability]
-    
+    @Environment(\.modelContext) private var modelContext
+    @Query private var users: [DatabaseUserModel]
     @State private var selectedGraphType: GraphType = .lineGrph
     @State private var isShowEditLossRatio = false
+    @State var isPurchased: Bool = false
+
     @Binding var lossRatio: Int
     
     var body: some View {
         VStack(spacing: 0) {
             
             HStack {
-                Text("ProbabilityTable")
+                Text("bankruptcProbabilityTable")
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundColor(Color.black)
@@ -44,33 +48,55 @@ struct ProbabilityTableView: View {
             HStack {
                 Spacer()
                 
-                Button {
-                    isShowEditLossRatio = true
-                } label: {
-                    HStack {
-                        Text("LossRatio")
-                        Text("\(lossRatio) %")
+                ZStack(alignment: .topTrailing) {
+                    Button {
+                        isShowEditLossRatio = isPurchased ? true : false
+                    } label: {
+                        HStack {
+                            Text("LossRatio")
+                            Text("\(lossRatio) %")
+                        }
+                        .padding(.vertical, 8)
+                        .padding(.horizontal)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.mint, lineWidth: 2) // 枠線の色と太さを指定
+                        )
                     }
-                    .padding(.vertical, 8)
-                    .padding(.horizontal)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 2) // 枠線の色と太さを指定
-                    )
+                    .padding()
+                    
+                    if(!isPurchased) {
+                        Image(systemName: "lock.fill")
+                            .font(.title)
+                            .foregroundStyle(Color.orange)
+                            .padding(.horizontal, 5)
+                    }
                 }
-
             }
             .padding(.bottom)
             
             if(selectedGraphType == .lineGrph) {
                 ZStack {
-                    Chart(
-                        list.filter { Double($0.probability) != nil } // Doubleに変換可能な値だけ残す
-                    ) { item in
-                        LineMark(
-                            x: .value("value", Int(item.percentage) ?? 0),
-                            y: .value("Category", Double(item.probability) ?? 0.0)
-                        )
+                    VStack(spacing: 10) {
+                        HStack(spacing: 0) {
+                            if(!list.filter { Double($0.probability) != nil }.isEmpty) {
+                                Text("bankruptcProbability")
+                                    .rotationEffect(.degrees(-90))
+                            }
+                            Chart(
+                                list.filter { Double($0.probability) != nil } // Doubleに変換可能な値だけ残す
+                            ) { item in
+                                LineMark(
+                                    x: .value("value", Int(item.percentage) ?? 0),
+                                    y: .value("Category", Double(item.probability) ?? 0.0)
+                                )
+                            }
+                            Spacer()
+                            Spacer()
+                        }
+                        if(!list.filter { Double($0.probability) != nil }.isEmpty) {
+                            Text("winningPercentage")
+                        }
                     }
                 }
                 .frame(height: 250) // 高さを親コンテナで強制
@@ -80,13 +106,13 @@ struct ProbabilityTableView: View {
             if(selectedGraphType == .tableGrph) {
                 // ヘッダー行
                 HStack(spacing: 0) {
-                    Text("損益比率")
+                    Text("ProfitAndLossRatio")
                         .frame(maxWidth: .infinity, alignment: .center)
                         .foregroundStyle(Color.black)
-                    Text("勝率")
+                    Text("winningPercentage")
                         .frame(maxWidth: .infinity, alignment: .center)
                         .foregroundStyle(Color.black)
-                    Text("破産確率")
+                    Text("bankruptcProbability")
                         .frame(maxWidth: .infinity, alignment: .center)
                         .foregroundStyle(Color.black)
                 }
@@ -120,6 +146,11 @@ struct ProbabilityTableView: View {
             .presentationDetents([.fraction(0.5)]) // ハーフモーダルに設定
             .presentationDragIndicator(.visible) // 上部のドラッグインジケーターを表示
             
+        }
+        .onAppear {
+            if let firstUser = users.first {
+                isPurchased = firstUser.purchased
+            }
         }
     }
 }

@@ -86,7 +86,6 @@ struct SettingView: View {
                                         Text(selectedProductVersion)
                                             .font(.headline)
                                     }
-                                    .disabled(selectedProductVersion == pro)
                                 }
                                 .padding()
                                 .background(Color(UIColor.systemGray6))
@@ -101,6 +100,7 @@ struct SettingView: View {
             .onChange(of: storeKitManager.purchasedCourses, { oldValue, newValue in
                 Task {
                     isPurchased = (try? await storeKitManager.isPurchased(productId: proVersionProductID)) ?? false
+                    await updateUser()
                 }
             })
             .onChange(of: isPurchased, { oldValue, newValue in
@@ -137,7 +137,8 @@ struct SettingView: View {
             try await manager.updateUserModel(
                 currency: selectedCurrency,
                 lossPercent: Int(selectedLossAllowance)!,
-                oneLotSize: Int(selectedOneLotSize)!
+                oneLotSize: Int(selectedOneLotSize)!,
+                purchased: isPurchased
             )
         } catch  {
             print(error)

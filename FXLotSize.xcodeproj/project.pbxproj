@@ -64,6 +64,7 @@
 /* Begin PBXFileReference section */
 		850227F82D042252000E4260 /* CustomKeyboardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboardsView.swift; sourceTree = "<group>"; };
 		850F2A432D1A725000D8F9D3 /* ProbabilityTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbabilityTableView.swift; sourceTree = "<group>"; };
+		8510203C2D43F52C00873AE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		852C2C1A2CB2972C00FFE4B2 /* LotCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotCalculatorView.swift; sourceTree = "<group>"; };
 		852C2C382CB3E9EE00FFE4B2 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		852C2C3A2CB3EA3A00FFE4B2 /* RiskRewardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskRewardView.swift; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		85A97D0B2C96B95C005145D9 /* FXLotSize */ = {
 			isa = PBXGroup;
 			children = (
+				8510203C2D43F52C00873AE0 /* Info.plist */,
 				85A97D142C96B95C005145D9 /* Preview Content */,
 				85EE4C212CCBDECB0023A003 /* Extensions */,
 				853EF2FC2CB1AC2C00FED4D2 /* Services */,
@@ -572,6 +574,7 @@
 				DEVELOPMENT_TEAM = HQMBFBNNSU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FXLotSize/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = forexLot;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -603,6 +606,7 @@
 				DEVELOPMENT_TEAM = HQMBFBNNSU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FXLotSize/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = forexLot;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

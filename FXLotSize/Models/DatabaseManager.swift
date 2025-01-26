@@ -15,12 +15,13 @@ class DatabaseManager {
         self.modelContext = modelContext
     }
     
-    func updateUserModel(currency: String, lossPercent: Int, oneLotSize: Int) async throws {
+    func updateUserModel(currency: String, lossPercent: Int, oneLotSize: Int, purchased: Bool) async throws {
         let fetchDescriptor = FetchDescriptor<DatabaseUserModel>()
         if let models = try? modelContext.fetch(fetchDescriptor) {
             models.first?.currency = currency
             models.first?.lossPercent = lossPercent
             models.first?.oneLotSize = oneLotSize
+            models.first?.purchased = purchased
         }
         try? modelContext.save()
     }

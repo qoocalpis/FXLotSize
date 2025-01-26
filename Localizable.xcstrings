@@ -93,6 +93,40 @@
         }
       }
     },
+    "bankruptcProbability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bankruptc Probability"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "破産確率"
+          }
+        }
+      }
+    },
+    "bankruptcProbabilityTable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bankruptc Probability Table"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "破産確率表"
+          }
+        }
+      }
+    },
     "calculation" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -346,19 +380,19 @@
     "Pro+" : {
 
     },
-    "ProbabilityTable" : {
+    "ProfitAndLossRatio" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Probability"
+            "value" : "Reward Ratio"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "破産確率表"
+            "state" : "needs_review",
+            "value" : "損益率"
           }
         }
       }
@@ -502,14 +536,22 @@
     "value" : {
 
     },
-    "勝率" : {
-
-    },
-    "損益比率" : {
-
-    },
-    "破産確率" : {
-
+    "winningPercentage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Winning Percentage"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "勝率"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

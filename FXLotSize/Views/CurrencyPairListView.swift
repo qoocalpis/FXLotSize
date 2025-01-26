@@ -15,8 +15,10 @@ struct CurrencyPairListView: View {
     @Query(sort: \DatabaseCurrencyPairModel.pairName,
            order: .forward
     ) private var currencyPairs: [DatabaseCurrencyPairModel]
+    @Query private var users: [DatabaseUserModel]
+    @State var isPurchased: Bool = false
     let array = ["USD/JPY", "EUR/USD", "GBP/JPY"]
-    
+
     var body: some View {
         NavigationStack {
             List {
@@ -35,8 +37,11 @@ struct CurrencyPairListView: View {
                 Section {
                     ForEach(0..<currencyPairs.count, id: \.self) { index in
                         Row(model: currencyPairs[index])
+                            .opacity(isPurchased ? 1.0 : 0.5)
                             .onTapGesture {
-                                updateDatabaseCurrencyPairModel(model: currencyPairs[index])
+                                if(isPurchased){
+                                    updateDatabaseCurrencyPairModel(model: currencyPairs[index])
+                                }
                             }
                     }
                 } header: {
@@ -54,6 +59,11 @@ struct CurrencyPairListView: View {
                             .font(.title3)
                     }
                 }
+            }
+        }
+        .onAppear {
+            if let firstUser = users.first {
+                isPurchased = firstUser.purchased
             }
         }
     }
