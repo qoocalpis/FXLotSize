@@ -64,7 +64,7 @@ struct HomeTabView: View {
                     // 切り替え時のアニメーション
                     .animation(.easeInOut, value: selected)
                 }
-                .navigationDestination(isPresented: $isShowCurrencyPairListView, destination: {
+                .fullScreenCover(isPresented: $isShowCurrencyPairListView, content: {
                     FavotiteCurrencyPairListView()
                 })
                 .navigationDestination(isPresented: $isShowSettingView, destination: {

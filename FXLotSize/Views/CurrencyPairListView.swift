@@ -22,17 +22,19 @@ struct CurrencyPairListView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section {
-                    ForEach(0..<currencyPairs.count, id: \.self) { index in
-                        if(array.contains(currencyPairs[index].pairName)) {
-                            Row(model: currencyPairs[index])
-                                .onTapGesture {
-                                    updateDatabaseCurrencyPairModel(model: currencyPairs[index])
-                                }
+                if(!isPurchased) {
+                    Section {
+                        ForEach(0..<currencyPairs.count, id: \.self) { index in
+                            if(array.contains(currencyPairs[index].pairName)) {
+                                Row(model: currencyPairs[index])
+                                    .onTapGesture {
+                                        updateDatabaseCurrencyPairModel(model: currencyPairs[index])
+                                    }
+                            }
                         }
+                    } header: {
+                        Text("free")
                     }
-                } header: {
-                    Text("free")
                 }
                 Section {
                     ForEach(0..<currencyPairs.count, id: \.self) { index in

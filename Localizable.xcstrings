@@ -5,16 +5,16 @@
 
     },
     "(%)" : {
-      "shouldTranslate" : false
+
     },
     "(%@)" : {
-      "shouldTranslate" : false
+
     },
     "(pips)" : {
-      "shouldTranslate" : false
+
     },
     "(USD)" : {
-      "shouldTranslate" : false
+
     },
     "/" : {
 
@@ -35,7 +35,7 @@
 
     },
     "199.000" : {
-      "shouldTranslate" : false
+
     },
     "AC" : {
 
@@ -72,9 +72,6 @@
           }
         }
       }
-    },
-    "Add Item" : {
-      "shouldTranslate" : false
     },
     "appropriateLot" : {
       "extractionState" : "manual",
@@ -234,11 +231,8 @@
     "free" : {
 
     },
-    "Item at %@" : {
-      "shouldTranslate" : false
-    },
     "JPY/JPY" : {
-      "shouldTranslate" : false
+
     },
     "LineGraph" : {
       "extractionState" : "manual",
@@ -482,9 +476,6 @@
           }
         }
       }
-    },
-    "Select an item" : {
-      "shouldTranslate" : false
     },
     "set ratio" : {
 

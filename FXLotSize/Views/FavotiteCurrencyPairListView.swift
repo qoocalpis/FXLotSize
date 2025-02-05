@@ -10,33 +10,31 @@ import SwiftData
 
 
 struct FavotiteCurrencyPairListView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @Query(
         filter: #Predicate { $0.favorited == true },
-            sort: \DatabaseCurrencyPairModel.pairName,
-            order: .forward
-        ) private var currencyPairs: [DatabaseCurrencyPairModel]
-        
+        sort: \DatabaseCurrencyPairModel.pairName,
+        order: .forward
+    ) private var currencyPairs: [DatabaseCurrencyPairModel]
     
-//    @State private var selectedItem: Int = 0
     @State private var isShowCurrencyPairListView = false
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(0..<currencyPairs.count, id: \.self) { index in
+                ForEach(currencyPairs, id: \.pairName) { currencyPair in
                     ZStack {
                         HStack {
-                            Text(currencyPairs[index].pairName)
+                            Text(currencyPair.pairName)
                                 .fontWeight(.bold)
                                 .monospaced()
                             Spacer()
-                            if(currencyPairs[index].pairName.prefix(3) != "XAU") {
-                                Text(attributedString(for: String(format: currencyPairs[index].pairName.suffix(3) == "JPY" ? "%.3f" : "%.5f", currencyPairs[index].pairRate)))
+                            if(currencyPair.pairName.prefix(3) != "XAU") {
+                                Text(attributedString(for: String(format: currencyPair.pairName.suffix(3) == "JPY" ? "%.3f" : "%.5f", currencyPair.pairRate)))
                                     .monospacedDigit()
-                            }else {
-                                Text(attributedXAUString(for: String(format: "%.2f", currencyPairs[index].pairRate)))
+                            } else {
+                                Text(attributedXAUString(for: String(format: "%.2f", currencyPair.pairRate)))
                                     .monospacedDigit()
                             }
                         }
@@ -45,7 +43,7 @@ struct FavotiteCurrencyPairListView: View {
                         .shadow(radius: 1)
                         
                         HStack {
-                            Image("\(currencyPairs[index].pairName.prefix(3))")
+                            Image("\(currencyPair.pairName.prefix(3))")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 47)
@@ -53,7 +51,7 @@ struct FavotiteCurrencyPairListView: View {
                                 .clipShape(Circle())
                             Text("/")
                                 .font(.title)
-                            Image("\(currencyPairs[index].pairName.suffix(3))")
+                            Image("\(currencyPair.pairName.suffix(3))")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 47)
@@ -62,9 +60,9 @@ struct FavotiteCurrencyPairListView: View {
                         }
                     }
                     .padding(.vertical, 10)
-                    .listRowBackground(currencyPairs[index].selected ? Color.yellow : Color.clear)
+                    .listRowBackground(currencyPair.selected ? Color.yellow : Color.clear)
                     .onTapGesture {
-                        updateDatabaseCurrencyPairModel(model: currencyPairs[index])
+                        updateDatabaseCurrencyPairModel(model: currencyPair)
                     }
                 }
             }
@@ -77,51 +75,58 @@ struct FavotiteCurrencyPairListView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         isShowCurrencyPairListView = true
-                    }label: {
+                    } label: {
                         Image(systemName: "plus")
                             .font(.title3)
                     }
                 }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.title3)
+                    }
+                }
             }
-            .fullScreenCover(isPresented: $isShowCurrencyPairListView, content: {
+            .fullScreenCover(isPresented: $isShowCurrencyPairListView) {
                 CurrencyPairListView()
-            })
+            }
         }
     }
+    
     func updateDatabaseCurrencyPairModel(model: DatabaseCurrencyPairModel) {
         let manager = DatabaseManager(modelContext: modelContext)
         do {
             try manager.updateSelected(name: model.pairName)
-        } catch  {
+        } catch {
             print(error)
         }
     }
-
+    
     func attributedString(for text: String) -> AttributedString {
         var attributedString = AttributedString(text)
-        // 末尾3文字から末尾の1文字を除いた範囲を取得
         let length = text.count
         if length >= 3 {
-            let startIndex = text.index(text.endIndex, offsetBy: -3) // 最後から3文字目の開始位置
-            let endIndex = text.index(text.endIndex, offsetBy: -1)   // 最後の1文字を除く
+            let startIndex = text.index(text.endIndex, offsetBy: -3)
+            let endIndex = text.index(text.endIndex, offsetBy: -1)
             let range = NSRange(startIndex..<endIndex, in: text)
             
             if let rangeInAttributedString = Range(range, in: attributedString) {
-                attributedString[rangeInAttributedString].font = .system(size: 25, weight: .bold) // フォントサイズを指定
+                attributedString[rangeInAttributedString].font = .system(size: 25, weight: .bold)
             }
         }
         return attributedString
     }
+    
     func attributedXAUString(for text: String) -> AttributedString {
         var attributedString = AttributedString(text)
-        // 末尾の2文字に対して範囲を指定してスタイルを変更
         if let range = attributedString.range(of: String(text.suffix(2))) {
-            attributedString[range].font = .system(size: 25, weight: .bold) // フォントサイズを指定
+            attributedString[range].font = .system(size: 25, weight: .bold)
         }
         return attributedString
     }
 }
-
 #Preview {
     FavotiteCurrencyPairListView()
 }
