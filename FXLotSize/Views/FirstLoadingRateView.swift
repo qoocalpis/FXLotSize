@@ -38,6 +38,19 @@ struct FirstLoadingRateView: View {
                 await setUser()
             }
         }
+        .onChange(of: storeKitManager.purchasedCourses, { oldValue, newValue in
+            Task {
+                let isPurchased = (try? await storeKitManager.isPurchased(productId: proVersionProductID)) ?? false
+                let manager = DatabaseManager(modelContext: modelContext)
+                do {
+                    try await manager.updateUserModel(
+                        purchased: isPurchased
+                    )
+                } catch  {
+                    print(error)
+                }
+            }
+        })
         .fullScreenCover(isPresented: $isUpdated) {
             HomeTabView()
         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ResultLotSizeView: View {
     
+    let lotSizeText: String
     let acountBarrance: String
     let lossAllowancePercent: String
     let lossAllowableAmount: String
@@ -26,7 +27,7 @@ struct ResultLotSizeView: View {
             
             HStack(alignment: .bottom) {
                 
-                Text("1.15")
+                Text(lotSizeText)
                     .font(.largeTitle)
                     .fontWeight(.black)
                 Text("lot")
@@ -65,7 +66,8 @@ struct ResultRowView: View {
 }
 
 #Preview {
-    ResultLotSizeView(acountBarrance: "10000",
+    ResultLotSizeView(lotSizeText: "1.15",
+                      acountBarrance: "10000",
                       lossAllowancePercent: "10000",
                       lossAllowableAmount: "10000",
                       stopLoss: "10000",

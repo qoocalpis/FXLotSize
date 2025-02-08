@@ -20,12 +20,12 @@
       "internalID" : "3AAF50CB",
       "localizations" : [
         {
-          "description" : "Pro Version",
+          "description" : "CurrencyPairs, fund ratio set for ruin risk",
           "displayName" : "Pro Version",
           "locale" : "en_US"
         },
         {
-          "description" : "Pro版",
+          "description" : "全通貨ペアの使用と破産確率算出時の資金率の変更が可能となります。",
           "displayName" : "Pro版",
           "locale" : "ja"
         }

@@ -35,7 +35,6 @@ class StoreKitManager: ObservableObject {
            //FileManagerを使用してplistPathからproductsの情報を取得
            let plist = FileManager.default.contents(atPath: plistPath) {
             productDict = (try? PropertyListSerialization.propertyList(from: plist, format: nil) as? [String : String]) ?? [:]
-            print("productDict", productDict)
         } else {
             productDict = [:]
         }
@@ -72,7 +71,6 @@ class StoreKitManager: ObservableObject {
                     await transaction.finish()
                     
                 } catch {
-                    
                     print("Transaction failed verification")
                 }
             }
@@ -84,7 +82,6 @@ class StoreKitManager: ObservableObject {
     func requestProducts() async {
         do {
             storeProducts = try await Product.products(for: productDict.values)
-            print("storeProducts", storeProducts)
         } catch {
             print("Failed - error retrieving products \(error)")
         }

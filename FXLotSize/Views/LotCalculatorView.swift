@@ -125,7 +125,8 @@ struct LotCalculatorView: View {
             .sheet(isPresented: $isShowResultLotSizeViewSheet) {
                 if let user = users.first,
                    let currencyPair = currencyPairs.first{
-                    ResultLotSizeView(acountBarrance: acountBarranceText,
+                    ResultLotSizeView(lotSizeText: lotSizeText,
+                                      acountBarrance: acountBarranceText,
                                       lossAllowancePercent: lossAllowanceText,
                                       lossAllowableAmount: lossAllowableAmountText,
                                       stopLoss: stopLossText,
