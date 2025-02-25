@@ -12,8 +12,6 @@ struct FirstLoadingRateView: View {
     
     @Environment(\.modelContext) private var modelContext
     @State var isUpdated = false
-    @StateObject private var storeKitManager = StoreKitManager()
-    private let proVersionProductID = "com.yuki.FXLotSize.Pro"
     
     var body: some View {
         ZStack {
@@ -34,23 +32,8 @@ struct FirstLoadingRateView: View {
         }
         .ignoresSafeArea()
         .onAppear(){
-            Task {
-                await setUser()
-            }
+            Task { await setUser() }
         }
-        .onChange(of: storeKitManager.purchasedCourses, { oldValue, newValue in
-            Task {
-                let isPurchased = (try? await storeKitManager.isPurchased(productId: proVersionProductID)) ?? false
-                let manager = DatabaseManager(modelContext: modelContext)
-                do {
-                    try await manager.updateUserModel(
-                        purchased: isPurchased
-                    )
-                } catch  {
-                    print(error)
-                }
-            }
-        })
         .fullScreenCover(isPresented: $isUpdated) {
             HomeTabView()
         }

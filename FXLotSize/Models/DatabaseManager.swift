@@ -15,13 +15,12 @@ class DatabaseManager {
         self.modelContext = modelContext
     }
     
-    func updateUserModel(currency: String = "", lossPercent: Int = 0, oneLotSize: Int = 0, purchased: Bool) async throws {
+    func updateUserModel(currency: String, lossPercent: Int, oneLotSize: Int) async throws {
         let fetchDescriptor = FetchDescriptor<DatabaseUserModel>()
         if let models = try? modelContext.fetch(fetchDescriptor) {
             models.first?.currency = currency
             models.first?.lossPercent = lossPercent
             models.first?.oneLotSize = oneLotSize
-            models.first?.purchased = purchased
         }
         try? modelContext.save()
     }
@@ -35,7 +34,7 @@ class DatabaseManager {
         let res = await gssInstance.callGoogleSheetAPI()
         if res {
             if count == .zero {
-                let user = DatabaseUserModel(id: 0, currency: "JPY", purchased: false, lossPercent: 5, oneLotSize: 100000)
+                let user = DatabaseUserModel(id: 0, currency: "JPY", lossPercent: 5, oneLotSize: 100000)
                 modelContext.insert(user)
                 for item in gssInstance.list {
                     print(item.pairName, item.pairRate)
@@ -52,7 +51,6 @@ class DatabaseManager {
                     print(item.pairName, item.pairRate)
                     try? updatePrice(name: item.pairName, newPrice: item.pairRate)
                 }
-                print("更新保存")
             }
         }else {
             print("could not callGoogleSheetAPI")

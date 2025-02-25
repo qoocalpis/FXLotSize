@@ -34,6 +34,23 @@
     "199.000" : {
 
     },
+    "AbilityToChangeFundRatio" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "・Ability to change fund ratio when calculating ruin probability"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "・破産確率計算時の資金率の変更可能"
+          }
+        }
+      }
+    },
     "AC" : {
 
     },
@@ -66,6 +83,23 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "口座残高"
+          }
+        }
+      }
+    },
+    "AllCurrencyPairsAvailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "・All currency pairs available"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "・すべての通貨ペアが利用可能"
           }
         }
       }
@@ -226,7 +260,20 @@
       }
     },
     "free" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Free version"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Free版"
+          }
+        }
+      }
     },
     "JPY/JPY" : {
 
@@ -249,20 +296,7 @@
       }
     },
     "loading Rate" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lording rate"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lording rate"
-          }
-        }
-      }
+
     },
     "lossAllowance" : {
       "extractionState" : "manual",
@@ -369,7 +403,14 @@
       }
     },
     "Pro+" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro版"
+          }
+        }
+      }
     },
     "ProfitAndLossRatio" : {
       "extractionState" : "manual",
@@ -517,6 +558,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "表"
+          }
+        }
+      }
+    },
+    "TimedOutText" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The operation timed out."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "操作がタイムアウトしました。"
           }
         }
       }

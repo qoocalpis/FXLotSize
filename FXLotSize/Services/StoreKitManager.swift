@@ -20,16 +20,14 @@ class StoreKitManager: ObservableObject {
     //非消耗型のProductの情報
     @Published var storeProducts: [Product] = []
     @Published var purchasedCourses : [Product] = []
-    
     //トランザクションプロパティ
     var updateListenerTask: Task<Void, Error>? = nil
     
     //PropertyList.plistの情報用の二次元配列
     private let productDict: [String : String]
-    
+    let proVersionProductID = "com.yuki.FXLotSize.Pro"
     //イニシャライザでproductDictの情報を取得
     init() {
-        
         //PropertyList.plistの有無
         if let plistPath = Bundle.main.path(forResource: "PropertyList", ofType: "plist"),
            //FileManagerを使用してplistPathからproductsの情報を取得
@@ -48,6 +46,7 @@ class StoreKitManager: ObservableObject {
             
             //顧客が購入した商品
             await updateCustomerProductStatus()
+
         }
     }
     
@@ -149,7 +148,6 @@ class StoreKitManager: ObservableObject {
             default:
                 return nil
         }
-        
     }
     
     // 商品が購入済みかどうかを確認
@@ -160,7 +158,7 @@ class StoreKitManager: ObservableObject {
     
     // 商品ID が購入済みかどうかを確認
     func isPurchased(productId: String) async throws -> Bool {
-        //この `com.AllFunctions.app` の最新のトランザクション レシートを取得
+        //productId の最新のトランザクション レシートを取得
         guard let result = await Transaction.latest(for: productId) else {
             //最新の取引がない場合、商品は購入されていないのでfalse
             return false

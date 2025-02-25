@@ -16,7 +16,7 @@ struct CurrencyPairListView: View {
            order: .forward
     ) private var currencyPairs: [DatabaseCurrencyPairModel]
     @Query private var users: [DatabaseUserModel]
-    @State var isPurchased: Bool = false
+    @Binding var isPurchased: Bool
     let array = ["USD/JPY", "EUR/USD", "GBP/JPY"]
 
     var body: some View {
@@ -63,11 +63,6 @@ struct CurrencyPairListView: View {
                 }
             }
         }
-        .onAppear {
-            if let firstUser = users.first {
-                isPurchased = firstUser.purchased
-            }
-        }
     }
     func updateDatabaseCurrencyPairModel(model: DatabaseCurrencyPairModel) {
         let manager = DatabaseManager(modelContext: modelContext)
@@ -101,5 +96,5 @@ struct Row: View {
 
 
 #Preview {
-    CurrencyPairListView()
+    CurrencyPairListView(isPurchased: .constant(false))
 }

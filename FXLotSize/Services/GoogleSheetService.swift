@@ -17,19 +17,20 @@ class GoogleSheetService {
     var list: [CurrencyPairModel] = []
     
     func callGoogleSheetAPI() async -> Bool {
-        print("callGoogleSheetAPI")
-        
-//        let outputFormat = DateFormatter()
-//        outputFormat.dateFormat = "yyyy/MM/dd H:m"
-//        date = outputFormat.string(from: now!)
         
         let apiKey = "AIzaSyA0w_ZecwgQJ9XHcrfsxLpW92i_FacfzRU"
         let spreadsheetId = "1URRKa2jW3WMx34GgtDUU21kCYMKvdlG5fKmWwPUSnTE"
         let range = "finance"
         let url = "https://sheets.googleapis.com/v4/spreadsheets/\(spreadsheetId)/values/\(range)?key=\(apiKey)"
         
+        // タイムアウトの設定
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 10 // 10秒
+        configuration.timeoutIntervalForResource = 10 // 10秒
+        let session = URLSession(configuration: configuration)
+        
         do {
-            let (data, _) = try await URLSession.shared.data(from: URL(string: url)!)
+            let (data, _) = try await session.data(from: URL(string: url)!)
             let decodedData = try JSONSerialization.jsonObject(with: data) as! [String: Any]
             let values = decodedData["values"] as! [[String]]
             

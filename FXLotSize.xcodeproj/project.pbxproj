@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		850227F92D042252000E4260 /* CustomKeyboardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850227F82D042252000E4260 /* CustomKeyboardsView.swift */; };
 		850F2A442D1A725000D8F9D3 /* ProbabilityTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F2A432D1A725000D8F9D3 /* ProbabilityTableView.swift */; };
+		851C123A2D58EB6D0091D3C1 /* PickerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C12392D58EB6C0091D3C1 /* PickerSettingsView.swift */; };
+		851C123C2D58EBE90091D3C1 /* ProductVersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C123B2D58EBE90091D3C1 /* ProductVersionView.swift */; };
 		852C2C1B2CB2972F00FFE4B2 /* LotCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C2C1A2CB2972C00FFE4B2 /* LotCalculatorView.swift */; };
 		852C2C392CB3E9F000FFE4B2 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C2C382CB3E9EE00FFE4B2 /* HomeTabView.swift */; };
 		852C2C3B2CB3EA3A00FFE4B2 /* RiskRewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C2C3A2CB3EA3A00FFE4B2 /* RiskRewardView.swift */; };
@@ -64,6 +66,8 @@
 		850227F82D042252000E4260 /* CustomKeyboardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboardsView.swift; sourceTree = "<group>"; };
 		850F2A432D1A725000D8F9D3 /* ProbabilityTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbabilityTableView.swift; sourceTree = "<group>"; };
 		8510203C2D43F52C00873AE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		851C12392D58EB6C0091D3C1 /* PickerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSettingsView.swift; sourceTree = "<group>"; };
+		851C123B2D58EBE90091D3C1 /* ProductVersionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVersionView.swift; sourceTree = "<group>"; };
 		852C2C1A2CB2972C00FFE4B2 /* LotCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotCalculatorView.swift; sourceTree = "<group>"; };
 		852C2C382CB3E9EE00FFE4B2 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		852C2C3A2CB3EA3A00FFE4B2 /* RiskRewardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskRewardView.swift; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 		85A97D3C2C96BD17005145D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				851C123B2D58EBE90091D3C1 /* ProductVersionView.swift */,
+				851C12392D58EB6C0091D3C1 /* PickerSettingsView.swift */,
 				85F154DD2D23F63B00756995 /* SettingCell.swift */,
 				85F154D52D201F4300756995 /* RiskRewardColumn.swift */,
 				85F154D12D2012F100756995 /* ToggleButton.swift */,
@@ -376,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				851C123A2D58EB6D0091D3C1 /* PickerSettingsView.swift in Sources */,
 				85A97D452C96F538005145D9 /* DatabaseCurrencyPairModel.swift in Sources */,
 				853EF3002CB1AD2100FED4D2 /* CurrencyPairModel.swift in Sources */,
 				85F154D22D2012F200756995 /* ToggleButton.swift in Sources */,
@@ -396,6 +403,7 @@
 				85F154E02D26BF9700756995 /* StoreKitManager.swift in Sources */,
 				852C2C1B2CB2972F00FFE4B2 /* LotCalculatorView.swift in Sources */,
 				855E31292CDCC5A200035B58 /* CurrencyPairListView.swift in Sources */,
+				851C123C2D58EBE90091D3C1 /* ProductVersionView.swift in Sources */,
 				85F154DE2D23F63B00756995 /* SettingCell.swift in Sources */,
 				850F2A442D1A725000D8F9D3 /* ProbabilityTableView.swift in Sources */,
 				853EF2FE2CB1AC3A00FED4D2 /* GoogleSheetService.swift in Sources */,

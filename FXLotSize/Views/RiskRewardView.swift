@@ -18,6 +18,7 @@ struct RiskRewardView: View {
     @State var riskRatio: Double = .zero
     @State var rewardRatio: Double = .zero
     @State var list: [Probability] = []
+    @Binding var isPurchased: Bool
     
     var body: some View {
         ScrollView {
@@ -80,7 +81,7 @@ struct RiskRewardView: View {
                 }
                 .padding()
                 
-                ProbabilityTableView(list: list, lossRatio: $lossRatio)
+                ProbabilityTableView(list: list, isPurchased: isPurchased, lossRatio: $lossRatio)
             }
         }
         .frame(maxHeight: .infinity) // 親の高さを調整
@@ -182,7 +183,7 @@ struct RiskRewardView: View {
 }
 
 #Preview {
-    RiskRewardView()
+    RiskRewardView(isPurchased: .constant(false))
 }
 
 

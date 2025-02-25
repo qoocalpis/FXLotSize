@@ -23,12 +23,9 @@ enum GraphType {
 struct ProbabilityTableView: View {
     
     let list: [Probability]
-    @Environment(\.modelContext) private var modelContext
-    @Query private var users: [DatabaseUserModel]
     @State private var selectedGraphType: GraphType = .lineGrph
     @State private var isShowEditLossRatio = false
     @State var isPurchased: Bool = false
-
     @Binding var lossRatio: Int
     
     var body: some View {
@@ -147,14 +144,9 @@ struct ProbabilityTableView: View {
             .presentationDragIndicator(.visible) // 上部のドラッグインジケーターを表示
             
         }
-        .onAppear {
-            if let firstUser = users.first {
-                isPurchased = firstUser.purchased
-            }
-        }
     }
 }
 
 #Preview {
-    RiskRewardView()
+    RiskRewardView(isPurchased: .constant(false))
 }

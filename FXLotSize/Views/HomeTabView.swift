@@ -17,10 +17,8 @@ struct HomeTabView: View {
     @StateObject private var keyboardObserver = KeyboardObserver()
     @State private var isShowCurrencyPairListView: Bool = false
     @State private var isShowSettingView: Bool = false
-
-    init(){
-        print("HomeTabView")
-    }
+    @State private var isPurchased: Bool = false
+    @StateObject private var storeKitManager = StoreKitManager()
     
     var body: some View {
         GeometryReader { GeometryProxy in
@@ -43,7 +41,7 @@ struct HomeTabView: View {
                         LotCalculatorView(isShowCurrencyPairListView: $isShowCurrencyPairListView)
                             .tag(0)
                         
-                        RiskRewardView()
+                        RiskRewardView(isPurchased: $isPurchased)
                             .tag(1)
                     }
                     .onChange(of: selected) {
@@ -53,6 +51,9 @@ struct HomeTabView: View {
                     }
                     .onAppear {
                         keyboardObserver.startObserving()
+                        Task {
+                            isPurchased = (try? await storeKitManager.isPurchased(productId: storeKitManager.proVersionProductID)) ?? false
+                        }
                     }
                     .onDisappear {
                         keyboardObserver.stopObserving()
@@ -65,10 +66,10 @@ struct HomeTabView: View {
                     .animation(.easeInOut, value: selected)
                 }
                 .fullScreenCover(isPresented: $isShowCurrencyPairListView, content: {
-                    FavotiteCurrencyPairListView()
+                    FavotiteCurrencyPairListView(isPurchased: $isPurchased)
                 })
                 .navigationDestination(isPresented: $isShowSettingView, destination: {
-                    SettingView()
+                    SettingView(storeKitManager: storeKitManager)
                 })
             }
         }

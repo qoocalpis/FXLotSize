@@ -11,9 +11,10 @@ import StoreKit
 
 struct SettingView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) private var modelContext
     @Query private var users: [DatabaseUserModel]
-//    @StateObject private var userModel = UserModel() // UserModelをObservableObjectとして定義
+    //    @StateObject private var userModel = UserModel() // UserModelをObservableObjectとして定義
     @State private var isShowCurrencyPairListView = false
     @State private var showPaywall = false
     @State private var showRestoreAlert = false
@@ -21,114 +22,82 @@ struct SettingView: View {
     @State private var selectedOneLotSize: String = "10000" // デフォルト値を設定
     @State private var selectedLossAllowance: String = "2" // デフォルト値を設定
     @State private var selectedProductVersion: String = "" // デフォルト値を設定
-    @StateObject private var storeKitManager = StoreKitManager()
+    @ObservedObject var storeKitManager: StoreKitManager
     @State var isPurchased: Bool = false
-    // 表示したい特定の Product ID
-    private let proVersionProductID = "com.yuki.FXLotSize.Pro"
-    private let pro = "Pro"
-    private let free = "Free"
-    let currencies = ["USD", "JPY"] // Pickerの選択肢
-    let constractSizes = [
-        "1000",
-        "5000",
-        "10000",
-        "50000",
-        "100000",
-    ]
-    let percentList: [String] = (1...100).map { String($0) }
-
+    @State private var contentHeight: CGFloat = 0
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                ScrollView {
-                    VStack(spacing: 10) {
-                        SettingCell(
-                            titleText: Text("AccountCurrency"),
-                            items: currencies,
-                            text: $selectedCurrency
-                        )
-                        SettingCell(
-                            titleText: Text("OneLotSize"),
-                            items: constractSizes,
-                            text: $selectedOneLotSize
-                        )
-                        SettingCell(
-                            titleText: Text("FixedProfitAndLossAllowance"),
-                            items: percentList,
-                            text: $selectedLossAllowance
-                        )
-                        HStack {
-                            Text("currencyPairListTitle")
-                                .font(.headline)
-                            Spacer()
-                            Button {
-                                isShowCurrencyPairListView = true
-                            } label: {
-                                Image(systemName: "chevron.right")
-                                    .foregroundStyle(Color.green)
-                                    .padding(.horizontal)
+        GeometryReader { geometry in
+            let width = geometry.size.width
+            NavigationView {
+                VStack {
+                    ScrollView {
+                        VStack(spacing: 10) {
+                            PickerSettingsView(
+                                selectedCurrency: $selectedCurrency,
+                                selectedOneLotSize: $selectedOneLotSize,
+                                selectedLossAllowance: $selectedLossAllowance
+                            )
+                            HStack {
+                                Text("currencyPairListTitle")
+                                    .font(.headline)
+                                Spacer()
+                                Button {
+                                    isShowCurrencyPairListView = true
+                                } label: {
+                                    Image(systemName: "chevron.right")
+                                        .foregroundStyle(Color.green)
+                                        .padding(.horizontal)
+                                }
                             }
+                            .padding()
+                            .background(Color(UIColor.systemGray6))
+                            .cornerRadius(10)
+                            
+                            ProductVersionView(
+                                storeKitManager: storeKitManager,
+                                isPurchased: $isPurchased,
+                                width: width,
+                                colorScheme: colorScheme
+                            )
+                            restoreButton
                         }
                         .padding()
-                        .background(Color(UIColor.systemGray6))
-                        .cornerRadius(10)
-
-                        ForEach(storeKitManager.storeProducts) { product in
-                            if(product.id == proVersionProductID){
-                                HStack {
-                                    Text("CurrentProductVersion")
-                                        .font(.headline)
-                                    
-                                    Spacer()
-                                    Button {
-                                        Task { try await storeKitManager.purchase(product) }
-                                    } label: {
-                                        Text(selectedProductVersion)
-                                            .font(.headline)
-                                    }
-                                }
-                                .padding()
-                                .background(Color(UIColor.systemGray6))
-                                .cornerRadius(10)
-                            }
-                        }
-                        restoreButton
                     }
-                    .padding()
                 }
+                .onAppear() {
+                    Task {
+                        isPurchased = (try? await storeKitManager.isPurchased(productId: storeKitManager.proVersionProductID)) ?? false
+                    }
+                }
+                .onChange(of: storeKitManager.purchasedCourses, { oldValue, newValue in
+                    Task {
+                        isPurchased = (try? await storeKitManager.isPurchased(productId: storeKitManager.proVersionProductID)) ?? false
+                    }
+                })
+                .onAppear {
+                    if let firstUser = users.first {
+                        selectedCurrency = firstUser.currency
+                        selectedOneLotSize = String(firstUser.oneLotSize)
+                        selectedLossAllowance = String(firstUser.lossPercent)
+                    }
+                }
+                .onChange(of: selectedCurrency, { oldValue, newValue in
+                    Task { await updateUser() }
+                })
+                .onChange(of: selectedOneLotSize, { oldValue, newValue in
+                    Task { await updateUser() }
+                })
+                .onChange(of: selectedLossAllowance, { oldValue, newValue in
+                    Task { await updateUser() }
+                })
+                .fullScreenCover(isPresented: $isShowCurrencyPairListView, content: {
+                    CurrencyPairListView(isPurchased: $isPurchased)
+                })
             }
-            .onChange(of: storeKitManager.purchasedCourses, { oldValue, newValue in
-                Task {
-                    isPurchased = (try? await storeKitManager.isPurchased(productId: proVersionProductID)) ?? false
-                    await updateUser()
-                }
-            })
-            .onChange(of: isPurchased, { oldValue, newValue in
-                selectedProductVersion = newValue ? pro : free
-            })
-            .onAppear {
-                if let firstUser = users.first {
-                    selectedCurrency = firstUser.currency
-                    selectedOneLotSize = String(firstUser.oneLotSize)
-                    selectedLossAllowance = String(firstUser.lossPercent)
-                    selectedProductVersion = firstUser.purchased ? pro : free
-                }
-            }
-            .onChange(of: selectedCurrency, { oldValue, newValue in
-                Task { await updateUser() }
-            })
-            .onChange(of: selectedOneLotSize, { oldValue, newValue in
-                Task { await updateUser() }
-            })
-            .onChange(of: selectedLossAllowance, { oldValue, newValue in
-                Task { await updateUser() }
-            })
-            .fullScreenCover(isPresented: $isShowCurrencyPairListView, content: {
-                CurrencyPairListView()
-            })
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle("Settings")
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     private func updateUser() async {
@@ -137,8 +106,7 @@ struct SettingView: View {
             try await manager.updateUserModel(
                 currency: selectedCurrency,
                 lossPercent: Int(selectedLossAllowance)!,
-                oneLotSize: Int(selectedOneLotSize)!,
-                purchased: isPurchased
+                oneLotSize: Int(selectedOneLotSize)!
             )
         } catch  {
             print(error)
@@ -161,5 +129,5 @@ struct SettingView: View {
 }
 
 #Preview {
-    SettingView()
+    SettingView(storeKitManager: StoreKitManager())
 }

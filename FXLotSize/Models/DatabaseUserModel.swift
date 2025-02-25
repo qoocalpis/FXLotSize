@@ -15,15 +15,13 @@ class DatabaseUserModel {
     @Attribute(.unique)
     var id: Int
     var currency: String
-    var purchased: Bool
     var lossPercent: Int
     var oneLotSize: Int
     
 
-    init(id: Int, currency: String, purchased: Bool, lossPercent: Int, oneLotSize: Int) {
+    init(id: Int, currency: String, lossPercent: Int, oneLotSize: Int) {
         self.id = id
         self.currency = currency
-        self.purchased = purchased
         self.lossPercent = lossPercent
         self.oneLotSize = oneLotSize
     }
